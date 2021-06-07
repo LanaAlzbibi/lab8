@@ -2,20 +2,20 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class PostFix { public static void main(String[] args) {
-    String s = "231*+9-";
+    String s = "123*+";
     System.out.println( evaluates(s));
 
-    String b ="2+3-1";
+  String b ="2+3-1";
     String a = infixToPostfix(b);
     System.out.println( evaluates(a));
 
 
-    String myNumber = read();
+      /*String myNumber = read();
     String c = infixToPostfix(myNumber);
-    System.out.println( evaluates(c));
+    System.out.println( evaluates(c));*/
 
 }
-    public static int evaluates(String s){
+    public static double evaluates(String s){
 
         //create a stack
         Stack<Integer> stack=new Stack<>();
@@ -28,10 +28,8 @@ public class PostFix { public static void main(String[] args) {
             // If the scanned character is an operand (number here),
             // push it to the stack.
             if(Character.isDigit(c))
-                stack.push(c - '0');
+                stack.push((int) c - '0');
 
-                //  If the scanned character is an operator, pop two
-                // elements from stack apply the operator
             else
             {
                 int val1 = stack.pop();
@@ -54,10 +52,13 @@ public class PostFix { public static void main(String[] args) {
                     case '*':
                         stack.push(val2*val1);
                         break;
+
+                    case '^':
+                        stack.push((int) Math.pow(val2, val1));
                 }
             }
         }
-        return stack.pop();
+        return  stack.pop();
     }
     public static String infixToPostfix(String s) {
         Stack<Character> st = new Stack<Character>();
@@ -123,19 +124,4 @@ public class PostFix { public static void main(String[] args) {
         return  number;
     }
 
-    public void test(){
-
-    StackAsList sTest = new StackAsList() {
-        @Override
-        public boolean isEmpty() {
-            return false;
-        }
-
-        @Override
-        public String infixToPostFix(String s) {
-            return null;
-        }
-    };
-
-    }
 }
