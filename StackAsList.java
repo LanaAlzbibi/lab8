@@ -60,10 +60,4 @@ public class StackAsList<T> implements Stack<T> {
         return first.data;
     }
     
-    public static void main(String[] args) {
-        Stack<Integer> stack = new StackAsList<Integer>();
-        stack.push(5);
-        stack.push(3);
-        System.out.print(stack.toString());
-    }
 }
